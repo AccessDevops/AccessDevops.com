@@ -58,8 +58,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg p-6 shadow-md border border-slate-200 flex-1 min-w-[250px]">
-    <div class="text-4xl font-bold text-blue-600 mb-2 font-mono tabular-nums">{{ formattedValue }}</div>
-    <p class="text-slate-700 font-semibold">{{ label }}</p>
+  <div class="bg-white rounded-lg p-5 shadow-md border border-slate-200 flex-1 min-w-[200px]">
+    <div class="text-3xl font-bold text-blue-600 mb-2 font-mono tabular-nums">{{ formattedValue }}</div>
+    <p class="text-slate-700 text-base font-semibold">{{ label }}</p>
   </div>
 </template>

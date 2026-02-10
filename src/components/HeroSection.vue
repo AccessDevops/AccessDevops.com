@@ -14,9 +14,8 @@ const toast = useToast()
 const { trackBookingEvent, trackCTA } = useAnalytics()
 
 const metrics = [
-  { value: '28', label: 'Active Customers' },
-  { value: '162', label: 'Managed Servers' },
-  { value: '1416', label: 'Deployments' },
+  { value: '34', label: 'Managed Servers' },
+  { value: '373', label: 'Deployments' },
 ]
 
 const { createBooking, isLoading: isSubmitting, error: apiError } = useBookingApi()
@@ -260,7 +259,7 @@ onUnmounted(() => {
         v-motion
         :initial="{ opacity: 0, y: 30 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 300, ease: 'easeOut' } }"
-        class="relative group inline-flex items-center gap-3 px-6 py-3 rounded-full bg-blue-50 border-2 border-blue-200 mb-12 cursor-help"
+        class="relative group inline-flex items-center gap-3.5 px-7 py-3.5 rounded-full bg-blue-100/60 border-2 border-blue-400/40 mb-12 cursor-help shadow-md hover:shadow-lg transition-shadow"
       >
         <svg
           ref="badgeIconRef"
@@ -276,8 +275,8 @@ onUnmounted(() => {
             },
           }"
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="26"
+          height="26"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -293,10 +292,10 @@ onUnmounted(() => {
           <path d="M22 4h-4"></path>
           <circle cx="4" cy="20" r="2"></circle>
         </svg>
-        <span class="text-base font-semibold text-blue-900">
+        <span class="text-xl font-medium text-blue-900 tracking-tight">
           Save 83% of your DevOps & Infra Cost
         </span>
-        <span class="text-sm text-blue-400">ⓘ</span>
+        <span class="text-lg text-blue-500">ⓘ</span>
         <div
           class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg"
         >
