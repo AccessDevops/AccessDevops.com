@@ -8,7 +8,7 @@ const { submitSurvey, isLoading: isSubmittingSurvey } = useBookingApi()
 
 const props = defineProps<{
   isOpen: boolean
-  action: 'created' | 'updated'
+  action: 'created' | 'updated' | 'forwarded'
   bookingDate?: string
   bookingTime?: string
   bookingId?: string
@@ -18,11 +18,11 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const actionText = computed(() => (props.action === 'created' ? 'booked' : 'updated'))
-const actionEmoji = computed(() => (props.action === 'created' ? '🎉' : '✏️'))
+const actionText = computed(() => (props.action === 'updated' ? 'updated' : 'booked'))
+const actionEmoji = computed(() => (props.action === 'updated' ? '✏️' : '🎉'))
 
 // Survey form state
-const showSurvey = computed(() => props.action === 'created')
+const showSurvey = computed(() => props.action !== 'updated')
 const surveyCompleted = ref(false)
 
 // Reset survey when modal opens
@@ -147,7 +147,8 @@ const handleSurveySubmit = async () => {
 
   if (result) {
     console.log('=== SURVEY SUBMITTED SUCCESSFULLY ===')
-    console.log('Survey ID:', result.id)
+    console.log('Survey ID:', result.survey?.id)
+    console.log('Persisted:', result.persisted)
     console.log('======================================')
     surveyCompleted.value = true
     resetSurveyData()

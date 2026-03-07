@@ -15,18 +15,19 @@ export interface BookingData {
 }
 
 export interface BookingResponse {
-  action: 'created' | 'updated'
+  action: 'created' | 'updated' | 'forwarded'
   booking: {
-    id: string
+    id: string | null
     email: string
     name: string
     booking_date: string
     booking_time: string
     description: string | null
-    created_at: string
-    updated_at: string
+    created_at: string | null
+    updated_at: string | null
   }
   message: string
+  persisted: boolean
 }
 
 export interface AvailableSlotsResponse {
@@ -46,7 +47,7 @@ export interface SurveyData {
 }
 
 export interface SurveyResponse {
-  id: string
+  id: string | null
   booking_id: string
   role: string[] | null
   cloud_usage: string[] | null
@@ -54,7 +55,13 @@ export interface SurveyResponse {
   team_size: string[] | null
   primary_goals: string[] | null
   other_goal: string | null
-  created_at: string
+  created_at: string | null
+}
+
+export interface SurveyActionResponse {
+  survey: SurveyResponse
+  message: string
+  persisted: boolean
 }
 
 export function useBookingApi() {
@@ -123,7 +130,7 @@ export function useBookingApi() {
   /**
    * Submit a survey for a booking
    */
-  const submitSurvey = async (data: SurveyData): Promise<SurveyResponse | null> => {
+  const submitSurvey = async (data: SurveyData): Promise<SurveyActionResponse | null> => {
     isLoading.value = true
     error.value = null
 
@@ -141,7 +148,7 @@ export function useBookingApi() {
         throw new Error(errorData.detail || 'Failed to submit survey')
       }
 
-      const result: SurveyResponse = await response.json()
+      const result: SurveyActionResponse = await response.json()
       return result
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'An error occurred'

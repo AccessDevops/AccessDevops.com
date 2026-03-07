@@ -130,10 +130,10 @@ const handleBookingSubmit = async (data: { name: string; email: string; descript
     showBookingFlow.value = false
 
     // Show toast based on action type
-    const actionText = result.action === 'created' ? 'booked' : 'updated'
-    const actionEmoji = result.action === 'created' ? '🎉' : '✏️'
+    const actionText = result.action === 'updated' ? 'updated' : 'booked'
+    const actionEmoji = result.action === 'updated' ? '✏️' : '🎉' 
 
-    if (result.action === 'created') {
+    if (result.action !== 'updated') {
       // Creation: green toast (success)
       toast.success(`${actionEmoji} Your audit has been ${actionText} successfully!`, {
         timeout: 15000, // 15 seconds
