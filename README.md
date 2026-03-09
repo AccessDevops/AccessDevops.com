@@ -133,3 +133,4 @@ Icons are simple, monochromatic, and align with the content.
 The overall layout is responsive, with sections stacking vertically.
 
 I can also generate an image based on any specific part of this description if you'd like!
+
