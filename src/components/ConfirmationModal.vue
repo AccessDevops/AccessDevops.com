@@ -427,15 +427,23 @@ const handleClose = () => {
                   <button
                     type="button"
                     @click="handleSkipSurvey"
-                    class="flex-1 px-8 py-4 border-2 border-slate-300 text-slate-700 font-bold text-lg rounded-xl hover:bg-slate-50 transition-all hover:shadow-md"
+                    :disabled="isSubmittingSurvey"
+                    class="flex-1 px-8 py-4 border-2 border-slate-300 text-slate-700 font-bold text-lg rounded-xl hover:bg-slate-50 transition-all hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Skip Survey
                   </button>
                   <button
                     type="submit"
-                    class="flex-1 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all shadow-lg hover:shadow-xl"
+                    :disabled="isSubmittingSurvey"
+                    :class="[
+                      'flex-1 px-8 py-4 font-bold text-lg rounded-xl transition-all flex items-center justify-center gap-2',
+                      !isSubmittingSurvey
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700 shadow-lg hover:shadow-xl cursor-pointer'
+                        : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                    ]"
                   >
-                    Submit Survey
+                    <span v-if="isSubmittingSurvey" class="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                    <span>{{ isSubmittingSurvey ? 'Submitting...' : 'Submit Survey' }}</span>
                   </button>
                 </div>
               </form>
